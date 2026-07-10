@@ -991,6 +991,20 @@ private fun AssistantLocalToolContent(
                     )
                 }
             )
+            item(
+                headlineContent = {
+                    Text("屏幕使用时间")
+                },
+                supportingContent = {
+                    Text("允许 AI 查看 App 使用时长。需在系统设置中授权"使用情况访问"权限。")
+                },
+                trailingContent = {
+                    PermissionedSwitch(
+                        checked = assistant.localTools.contains(LocalToolOption.ScreenTime),
+                        onCheckedChange = { toggleLocalTool(LocalToolOption.ScreenTime, it) }
+                    )
+                }
+            )
         }
 
         Text(

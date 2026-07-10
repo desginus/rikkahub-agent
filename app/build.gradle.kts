@@ -13,7 +13,7 @@ plugins {
 
 android {
     namespace = "me.rerere.rikkahub"
-    compileSdk = 37
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "excp.rikkahub"

@@ -26,6 +26,7 @@ import me.rerere.rikkahub.data.ai.tools.local.InteractiveToolStreamer
 import me.rerere.rikkahub.data.ai.tools.local.audioInfoTool
 import me.rerere.rikkahub.data.ai.tools.local.batteryTool
 import me.rerere.rikkahub.data.ai.tools.local.calendarQueryTool
+import me.rerere.rikkahub.data.ai.tools.local.screenTimeTool
 import me.rerere.rikkahub.data.ai.tools.local.callLogTool
 import me.rerere.rikkahub.data.ai.tools.local.cameraPhotoTool
 import me.rerere.rikkahub.data.ai.tools.local.clickNodeTool
@@ -187,6 +188,7 @@ sealed class LocalToolOption {
     @Serializable @SerialName("system_intents")      data object SystemIntents      : LocalToolOption()
     @Serializable @SerialName("browser")             data object Browser            : LocalToolOption()
     @Serializable @SerialName("calendar")            data object Calendar            : LocalToolOption()
+    @Serializable @SerialName("screen_time")         data object ScreenTime         : LocalToolOption()
     @Serializable @SerialName("web_fetch")           data object WebFetch           : LocalToolOption()
 
     // Phase 25 — Phase 3 second cut + ExternalStorage + Archive.
@@ -926,6 +928,9 @@ class LocalTools(
         }
         if (options.contains(LocalToolOption.Calendar)) {
             tools.add(calendarQueryTool(context))
+        }
+        if (options.contains(LocalToolOption.ScreenTime)) {
+            tools.add(screenTimeTool(context))
         }
         if (options.contains(LocalToolOption.Workflows)) {
             // workflow_create persists the authoringAssistantId from [context] so the

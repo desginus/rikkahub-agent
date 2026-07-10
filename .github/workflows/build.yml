@@ -28,17 +28,24 @@ jobs:
           sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools"
           sdkmanager "ndk;28.2.13676358" || true
 
+      - name: Create local.properties for signing
+        run: |
+          cat > local.properties << 'PROPEOF'
+storeFile=../app/release.jks
+storePassword=release123
+keyAlias=rikkahub
+keyPassword=release123
+PROPEOF
+
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug --no-daemon --stacktrace
-        env:
-          JAVA_HOME: ${{ env.JAVA_HOME }}
+      - name: Build Release APK
+        run: ./gradlew assembleRelease --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: rikkahub-agent-calendar-debug
-          path: app/build/outputs/apk/debug/*.apk
+          name: rikkahub-agent-release
+          path: app/build/outputs/apk/release/*.apk
           retention-days: 7
