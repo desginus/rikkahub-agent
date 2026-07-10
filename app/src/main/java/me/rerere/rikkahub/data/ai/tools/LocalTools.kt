@@ -25,6 +25,7 @@ import me.rerere.rikkahub.data.ai.tools.local.CameraResultBuffer
 import me.rerere.rikkahub.data.ai.tools.local.InteractiveToolStreamer
 import me.rerere.rikkahub.data.ai.tools.local.audioInfoTool
 import me.rerere.rikkahub.data.ai.tools.local.batteryTool
+import me.rerere.rikkahub.data.ai.tools.local.calendarQueryTool
 import me.rerere.rikkahub.data.ai.tools.local.callLogTool
 import me.rerere.rikkahub.data.ai.tools.local.cameraPhotoTool
 import me.rerere.rikkahub.data.ai.tools.local.clickNodeTool
