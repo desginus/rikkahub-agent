@@ -375,7 +375,7 @@ class CronJobWorker(
         } catch (_: SecurityException) { /* POST_NOTIFICATIONS not granted — fine */ }
     }
 
-    private fun postSuccessNotification(jobName: String, conversationId: String) {
+    private fun postSuccessNotification(jobName: String, conversationId: kotlin.uuid.Uuid) {
         val ctx = applicationContext
         val nm = ctx.getSystemService(NotificationManager::class.java)
         if (nm.getNotificationChannel(CHANNEL_ID) == null) {
