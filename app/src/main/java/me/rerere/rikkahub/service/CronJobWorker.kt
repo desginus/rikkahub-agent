@@ -375,6 +375,23 @@ class CronJobWorker(
         } catch (_: SecurityException) { /* POST_NOTIFICATIONS not granted — fine */ }
     }
 
+    private fun postSuccessNotification(jobName: String, conversationId: String) {
+        val ctx = applicationContext
+        val nm = ctx.getSystemService(NotificationManager::class.java)
+        if (nm.getNotificationChannel(CHANNEL_ID) == null) {
+            nm.createNotificationChannel(NotificationChannel(
+                CHANNEL_ID, "Scheduled jobs", NotificationManager.IMPORTANCE_DEFAULT))
+        }
+        val builder = NotificationCompat.Builder(ctx, CHANNEL_ID)
+            .setContentTitle("Scheduled job completed")
+            .setContentText(jobName)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setAutoCancel(true)
+        try {
+            NotificationManagerCompat.from(ctx).notify("${jobName}_success".hashCode(), builder.build())
+        } catch (_: SecurityException) { /* POST_NOTIFICATIONS not granted — fine */ }
+    }
+
     companion object {
         const val KEY_JOB_ID = "cron_job_id"
         const val KEY_MANUAL = "cron_job_manual"
