@@ -30,12 +30,10 @@ jobs:
 
       - name: Create local.properties for signing
         run: |
-          cat > local.properties << 'PROPEOF'
-storeFile=../app/release.jks
-storePassword=release123
-keyAlias=rikkahub
-keyPassword=release123
-PROPEOF
+          echo "storeFile=../app/release.jks" > local.properties
+          echo "storePassword=release123" >> local.properties
+          echo "keyAlias=rikkahub" >> local.properties
+          echo "keyPassword=release123" >> local.properties
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
