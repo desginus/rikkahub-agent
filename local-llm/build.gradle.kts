@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "me.rerere.locallm"
-    compileSdk = 36
+    compileSdk = 37
     defaultConfig {
         minSdk = 26
         consumerProguardFiles("consumer-rules.pro")

@@ -222,6 +222,11 @@ class CronJobWorker(
                 postFailureNotification(job.name, "$outcome: ${errorMessage.orEmpty()}")
             }
 
+            // Success notification for llm mode — post AI's response as a push notification
+            if (outcome == "success" && convIdMaybe != null) {
+                postSuccessNotification(job.name, convIdMaybe)
+            }
+
             // Manual fires (trigger_job_now) are bonus — they get a history row but
             // don't bump runs_so_far or lastRunAtMs (per spec Decision 13). The regular
             // schedule continues unaffected.

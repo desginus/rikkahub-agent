@@ -27,6 +27,8 @@ jobs:
         run: |
           sdkmanager "platforms;android-36" "build-tools;36.0.0" "platform-tools"
           sdkmanager "ndk;28.2.13676358" || true
+          # Symlink android-37 → android-36 since platform 37 isn't available yet
+          ln -s android-36 $ANDROID_HOME/platforms/android-37
 
       - name: Create local.properties for signing
         run: |
